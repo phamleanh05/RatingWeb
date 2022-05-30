@@ -11,9 +11,9 @@ import java.util.UUID;
 
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, UUID> {
-//    @Query("SELECT s FROM Rating s WHERE s.username = ?1")
-//    Optional<Rating> findByUserName(String username);
-//
+    @Query("SELECT s FROM Rating s WHERE s.id = ?1")
+    Optional<Rating> findById(Integer id);
+
     @Query("SELECT s FROM Rating s WHERE s.id = ?1")
     Optional<Rating> findByUUId(UUID uuid);
 

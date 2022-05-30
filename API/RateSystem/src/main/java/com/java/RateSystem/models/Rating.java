@@ -12,9 +12,10 @@ public class Rating {
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "uuid", updatable = false, nullable = false)
 
-    private UUID id;
+    private UUID uuid;
+    private Integer id;
     private Integer serviceid;
     private String username;
     private Double point;
@@ -32,12 +33,24 @@ public class Rating {
         this.date = date;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public UUID getId() {
-        return id;
+        return uuid;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        this.uuid = uuid;
     }
 
     public Integer getServiceid() {
@@ -83,7 +96,8 @@ public class Rating {
     @Override
     public String toString() {
         return "Rating{" +
-                "serviceid=" + serviceid +
+                "id=" + id +
+                ", serviceid=" + serviceid +
                 ", userName='" + username + '\'' +
                 ", point=" + point +
                 ", Comment='" + comment + '\'' +

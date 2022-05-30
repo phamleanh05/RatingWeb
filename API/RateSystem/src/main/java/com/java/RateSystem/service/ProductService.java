@@ -21,7 +21,7 @@ public class ProductService {
     }
 
     public Optional<Servicerate> findById(@PathVariable Integer id) {
-        return serviceRepository.findById(id);
+        return serviceRepository.findByServiceId(id);
     }
 
     public void deleteById(@PathVariable Integer id) {serviceRepository.deleteById(id);}
