@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -22,6 +23,10 @@ public class ProductService {
 
     public Optional<Servicerate> findById(@PathVariable Integer id) {
         return serviceRepository.findByServiceId(id);
+    }
+
+    public Optional<Servicerate> findByUUId(@PathVariable UUID uuid) {
+        return serviceRepository.findByUUId(uuid);
     }
 
     public void deleteById(@PathVariable Integer id) {serviceRepository.deleteById(id);}
