@@ -44,24 +44,24 @@ public class RatingController {
     //insert data
     @PostMapping("/insert")
     ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
-        Optional<Rating> foundRate = ratingService.findByUUId(newRate.getId());
+        Optional<Rating> foundRate = ratingService.findByUUId(newRate.getUuid());
         if (foundRate.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("failed", "Insert Rating successfully"," ")
+                    new ResponseObject("failed", "The Rating has existed"," ")
             );
         } else {
             ratingService.saveRating(newRate);
             ratingService.updateavg(newRate);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("Ok", "Insert Rating successfully","")
+                    new ResponseObject("Ok", "Insert Rating successfully",newRate)
             );
         }
     }
 
     //Update data
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateRate(@RequestBody Rating newRate, @PathVariable UUID id){
-        Rating updateRate =  ratingService.findByUUId(id)
+    ResponseEntity<ResponseObject> updateRate(@RequestBody Rating newRate, @PathVariable Integer id){
+        Rating updateRate =  ratingService.findById(id)
                 .map(rate -> {
                     rate.setUsername(newRate.getUsername());
                     rate.setServiceid(newRate.getServiceid());

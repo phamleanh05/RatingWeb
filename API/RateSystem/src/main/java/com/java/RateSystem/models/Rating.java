@@ -45,12 +45,8 @@ public class Rating {
         this.id = id;
     }
 
-    public UUID getId() {
-        return uuid;
-    }
-
-    public void setId(UUID id) {
-        this.uuid = uuid;
+    public Integer getId() {
+        return id;
     }
 
     public Integer getServiceid() {

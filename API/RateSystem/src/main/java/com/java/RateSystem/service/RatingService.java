@@ -27,16 +27,12 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public Optional<Rating> findByServiceId(@PathVariable Integer serviceid) {
-        return ratingRepository.findByServiceId(serviceid);
+    public Optional<Rating> findById(@PathVariable Integer id) {
+        return ratingRepository.findById(id);
     }
 
     public Optional<Rating> findByUUId(@PathVariable UUID uuid){
         return ratingRepository.findByUUId(uuid);
-    }
-
-    public Optional<Rating> findById(@PathVariable Integer id){
-        return ratingRepository.findById(id);
     }
 
 
@@ -53,7 +49,7 @@ public class RatingService {
     }
 
     public OptionalDouble calculate(Rating newRating){
-        Optional<Rating> findRatingbyServiceID = ratingRepository.findByServiceId(newRating.getServiceid());
+        List<Rating> findRatingbyServiceID = ratingRepository.findByServiceId(newRating.getServiceid());
         OptionalDouble avg=  findRatingbyServiceID.stream().mapToDouble(i-> i.getPoint()).average();
         return avg;
     }
