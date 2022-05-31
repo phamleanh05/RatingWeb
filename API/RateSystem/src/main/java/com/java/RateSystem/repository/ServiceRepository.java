@@ -15,4 +15,6 @@ public interface ServiceRepository extends JpaRepository<Servicerate, Integer> {
 
     @Query("SELECT s FROM Servicerate s WHERE s.uuid = ?1")
     Optional<Servicerate> findByUUId(UUID uuid);
+
+
 }

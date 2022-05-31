@@ -8,7 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,6 +45,33 @@ public class ServiceController {
                         new ResponseObject("false", "Cannot find Service with id =" + id,"")
                 );
 
+    }
+
+    //Export Data
+    @GetMapping("/export")
+    public void exportToCSV(HttpServletResponse response) throws IOException{
+        response.setContentType("text/csv");
+        String fileName = "service.csv";
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=services_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Servicerate> listServices = productService.listAll();
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"AverageScore","ServiceNAme", "Description"};
+        String[] nameMapping = { "avgscore", "name", "description"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Servicerate servicerate : listServices) {
+            csvWriter.write(servicerate, nameMapping);
+        }
+
+        csvWriter.close();
     }
 
     //insert data

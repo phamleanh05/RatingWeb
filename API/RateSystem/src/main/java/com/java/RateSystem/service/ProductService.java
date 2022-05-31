@@ -1,9 +1,12 @@
 package com.java.RateSystem.service;
 
 import com.java.RateSystem.models.Servicerate;
+import com.java.RateSystem.models.User;
 import com.java.RateSystem.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,11 +15,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class ProductService {
 
     @Autowired
     private ServiceRepository serviceRepository;
 
+    public List<Servicerate> listAll(){
+        return serviceRepository.findAll(Sort.by("avgscore").ascending());
+    }
     public List<Servicerate> getAll() {
         return serviceRepository.findAll();
     }
