@@ -7,11 +7,11 @@
 </head>
 <body>
 <div class="form">
-    <form method="post" th:object="${registerRequest}">
+    <form method="post" action="/register" th:object="${registerRequest}">
         <h2>Register</h2>
         <div class="input-box">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" name="userName" placeholder="UserName" required>
+            <input type="text" name="name" placeholder="UserName" required>
         </div>
         <div class="input-box">
             <i class="fa fa-user" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
             <input type="password" name="password" placeholder="Password" title="Must have" required>
         </div>
         <div class="input-box">
-            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <i class="fa fa-user" aria-hidden="true"></i>
             <input type="text" name="role" placeholder="Role" required>
         </div>
         <div class="input-box">

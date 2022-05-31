@@ -7,11 +7,11 @@
 </head>
 <body>
 <div class="form">
-    <form method="post" th:object="${loginRequest}">
+    <form method="post" action="/login" th:object="${loginRequest}">
         <h2>Login</h2>
         <div class="input-box">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" name="userName" placeholder="UserName" required>
+            <input type="text" name="name" placeholder="UserName" required>
         </div>
         <div class="input-box">
             <i class="fa fa-unlock-alt" aria-hidden="true"></i>

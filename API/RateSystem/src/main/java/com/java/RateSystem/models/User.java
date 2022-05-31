@@ -17,8 +17,6 @@ public class User {
     private String email;
     private String role;
 
-    public User() {
-    }
 
     public Integer getId() {
         return id;
@@ -65,7 +63,8 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name)
+                && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
 
 
@@ -77,9 +76,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "Name='" + name + '\'' +
-                ", Email='" + email + '\'' +
-                ", Role='" + role + '\'' +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

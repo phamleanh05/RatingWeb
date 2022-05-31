@@ -41,12 +41,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model){
-        System.out.println("login request: " + user);
+        System.out.println("login requset: " + user);
         User authenticated = loginService.authenticate(user.getName(), user.getPassword());
-        if(authenticated != null){
-            model.addAttribute("userName", authenticated.getName());
+        if (authenticated != null){
+            model.addAttribute("userLogin", authenticated.getName());
             return "personal_page";
-        }else {
+        }
+        else {
             return "error_page";
         }
     }
