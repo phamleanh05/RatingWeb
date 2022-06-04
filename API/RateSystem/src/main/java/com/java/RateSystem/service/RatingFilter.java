@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRange;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.*;
@@ -65,12 +67,7 @@ public class RatingFilter implements Filter {
             }
         }
     }
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
-        FilterRegistrationBean filterBean = new FilterRegistrationBean();
-        filterBean.setFilter(new ShallowEtagHeaderFilter());
-        filterBean.setUrlPatterns(Arrays.asList("*"));
-        return filterBean;
-    }
+//
+
 
 }
