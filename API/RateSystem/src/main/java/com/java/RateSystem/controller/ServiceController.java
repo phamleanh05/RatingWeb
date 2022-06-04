@@ -2,7 +2,6 @@ package com.java.RateSystem.controller;
 
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.Servicerate;
-import com.java.RateSystem.repository.ServiceRepository;
 import com.java.RateSystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*", allowedHeaders = "")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/services")
 public class ServiceController {
@@ -73,6 +72,7 @@ public class ServiceController {
 
         csvWriter.close();
     }
+
 
     //insert data
     @PostMapping("/insert")

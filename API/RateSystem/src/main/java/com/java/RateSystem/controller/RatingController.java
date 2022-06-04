@@ -1,8 +1,10 @@
 package com.java.RateSystem.controller;
 
+import com.java.RateSystem.models.ExportData;
 import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.repository.RatingRepository;
+import com.java.RateSystem.service.JoinQuery;
 import com.java.RateSystem.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*", allowedHeaders = "")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/rate")
 public class RatingController {
@@ -22,6 +24,9 @@ public class RatingController {
 
     @Autowired
     private RatingRepository ratingRepository;
+
+    @Autowired
+    private JoinQuery joinQuery;
 
     @GetMapping("")
     List<Rating> getAllService(){
@@ -76,6 +81,11 @@ public class RatingController {
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("Ok","Update Service successfully",ratingService.saveRating(newRate))
         );
+    }
+
+    @GetMapping("/inner")
+    public ResponseEntity<List<ExportData>> getDeptEmployeesInnerJoin() {
+        return new ResponseEntity<List<ExportData>>(joinQuery.getDeptEmployeesInnerJoin(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

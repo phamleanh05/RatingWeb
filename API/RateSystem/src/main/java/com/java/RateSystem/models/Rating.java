@@ -1,5 +1,8 @@
 package com.java.RateSystem.models;
 
+import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,12 +18,16 @@ public class Rating {
     @Column(name = "uuid", updatable = false, nullable = false)
 
     private UUID uuid;
+
     private Integer id;
+
+    @Column(name = "serviceid")
     private Integer serviceid;
     private String username;
     private Double point;
     private String comment;
     private Date date;
+
 
     public Rating() {
     }
