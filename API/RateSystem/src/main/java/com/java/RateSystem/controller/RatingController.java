@@ -6,6 +6,7 @@ import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.repository.RatingRepository;
 import com.java.RateSystem.service.JoinQuery;
 import com.java.RateSystem.service.RatingService;
+import org.apache.tomcat.util.http.parser.ContentRange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = {})
+@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/rate")
 public class RatingController {
