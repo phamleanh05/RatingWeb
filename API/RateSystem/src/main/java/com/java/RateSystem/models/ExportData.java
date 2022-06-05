@@ -1,27 +1,48 @@
 package com.java.RateSystem.models;
 
+import org.hibernate.annotations.Immutable;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Immutable
+@Table(name = "export")
 public class ExportData {
-    private String servicename;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    private Integer id;
+    private String name;
     private String description;
     private Double avgscore;
     private Date date;
 
-    public ExportData(String servicename, String description, Double avgscore, Date date) {
-        this.servicename = servicename;
+    public ExportData() {
+    }
+
+    public ExportData(String name, String description, Double avgscore, Date date) {
+        this.name = name;
         this.description = description;
         this.avgscore = avgscore;
         this.date = date;
     }
 
-
-    public String getServicename() {
-        return servicename;
+    public Integer getId() {
+        return id;
     }
 
-    public void setServicename(String servicename) {
-        this.servicename = servicename;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -51,7 +72,7 @@ public class ExportData {
     @Override
     public String toString() {
         return "Export{" +
-                "servicename='" + servicename + '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", avgscore='" + avgscore + '\'' +
                 ", date=" + date +

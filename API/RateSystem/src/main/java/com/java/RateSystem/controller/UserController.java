@@ -5,22 +5,26 @@ import com.java.RateSystem.models.User;
 import com.java.RateSystem.repository.UserRepository;
 import com.java.RateSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "FooBar")
 @RestController
 @RequestMapping(path = "api/v1/user")
 public class UserController {
     //Call API
     @Autowired
     private UserService userService;
+
+
     @GetMapping("")
     List<User> getAllUserName(){return userService.findAll();}
 

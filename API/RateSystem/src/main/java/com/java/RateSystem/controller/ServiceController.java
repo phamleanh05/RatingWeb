@@ -1,7 +1,10 @@
 package com.java.RateSystem.controller;
 
+import com.java.RateSystem.models.ExportData;
+import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.Servicerate;
+import com.java.RateSystem.service.JoinQuery;
 import com.java.RateSystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +23,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/services")
 public class ServiceController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private JoinQuery joinQuery;
 
     @GetMapping("")
     List<Servicerate> getAllServiceName() {
@@ -46,9 +52,12 @@ public class ServiceController {
 
     }
 
+
+
     //Export Data
     @GetMapping("/export")
     public void exportToCSV(HttpServletResponse response) throws IOException{
+
         response.setContentType("text/csv");
         String fileName = "service.csv";
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -58,21 +67,20 @@ public class ServiceController {
         String headerValue = "attachment; filename=services_" + currentDateTime + ".csv";
         response.setHeader(headerKey, headerValue);
 
-        List<Servicerate> listServices = productService.listAll();
+        List<ExportData> listServices = joinQuery.updateExport();
 
         ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = {"AverageScore","ServiceNAme", "Description"};
-        String[] nameMapping = { "avgscore", "name", "description"};
+        String[] csvHeader = { "AverageScore","ServiceNAme", "Description", "Date"};
+        String[] nameMapping = { "avgscore", "name", "description", "date"};
 
         csvWriter.writeHeader(csvHeader);
 
-        for (Servicerate servicerate : listServices) {
-            csvWriter.write(servicerate, nameMapping);
+        for (ExportData exportData : listServices) {
+            csvWriter.write(exportData, nameMapping);
         }
 
         csvWriter.close();
     }
-
 
     //insert data
     @PostMapping("/insert")

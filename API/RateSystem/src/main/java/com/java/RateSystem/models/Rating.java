@@ -1,8 +1,5 @@
 package com.java.RateSystem.models;
 
-import lombok.AllArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

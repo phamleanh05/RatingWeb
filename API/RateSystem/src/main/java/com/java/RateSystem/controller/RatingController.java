@@ -16,18 +16,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/rate")
 public class RatingController {
     @Autowired
     private RatingService ratingService;
-
-    @Autowired
-    private RatingRepository ratingRepository;
-
-    @Autowired
-    private JoinQuery joinQuery;
 
     @GetMapping("")
     List<Rating> getAllService(){
@@ -64,6 +58,7 @@ public class RatingController {
         }
     }
 
+
     //Update data
     @PutMapping("/{id}")
     ResponseEntity<ResponseObject> updateRate(@RequestBody Rating newRate, @PathVariable Integer id){
@@ -84,10 +79,7 @@ public class RatingController {
         );
     }
 
-    @GetMapping("/inner")
-    public ResponseEntity<List<ExportData>> getDeptEmployeesInnerJoin() {
-        return new ResponseEntity<List<ExportData>>(joinQuery.getDeptEmployeesInnerJoin(), HttpStatus.OK);
-    }
+
 
     @DeleteMapping("/{id}")
     ResponseEntity<ResponseObject> deleteRate (@PathVariable UUID id){
