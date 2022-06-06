@@ -61,9 +61,7 @@ public class ExportData {
         this.avgscore = avgscore;
     }
 
-    public Date getDate() {
-        return date;
-    }
+    public Date getDate() { return date; }
 
     public void setDate(Date date) {
         this.date = date;

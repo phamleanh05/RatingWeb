@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-//@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/rate")
 public class RatingController {

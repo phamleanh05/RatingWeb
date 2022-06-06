@@ -1,7 +1,6 @@
 package com.java.RateSystem.controller;
 
 import com.java.RateSystem.models.ExportData;
-import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.Servicerate;
 import com.java.RateSystem.service.JoinQuery;
