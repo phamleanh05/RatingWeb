@@ -9,10 +9,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Integer id;
     private String name;
-
     private String password;
     private String email;
     private String role;
@@ -66,7 +64,6 @@ public class User {
         return Objects.equals(id, user.id) && Objects.equals(name, user.name)
                 && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
-
 
     @Override
     public int hashCode() {
