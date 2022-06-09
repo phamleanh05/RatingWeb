@@ -62,4 +62,13 @@ public class RatingService {
             serviceRepository.save(foundServices);
         }
     }
+
+    public boolean checkRating(Rating newRaing){
+        if(newRaing.getDate() == null || newRaing.getPoint() == null ||
+                newRaing.getServiceid() == null || newRaing.getUsername() == null) {
+            return false;
+        }
+        else
+            return true;
+    }
 }

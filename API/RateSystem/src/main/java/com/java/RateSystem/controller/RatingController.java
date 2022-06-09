@@ -43,11 +43,25 @@ public class RatingController {
 
     //insert data
     @PostMapping("/insert")
-    ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
-        Optional<Rating> foundRate = ratingService.findByUUId(newRate.getUuid());
-        if (foundRate.isPresent()) {
+    public ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
+//        Optional<Rating> foundRate = ratingService.findByUUId(newRate.getUuid());
+//        if (foundRate.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
+//                    new ResponseObject("failed", "The Rating has existed"," ")
+//            );
+//        } else {
+//            ratingService.saveRating(newRate);
+//            ratingService.updateavg(newRate);
+//            return ResponseEntity.status(HttpStatus.OK).body(
+//                    new ResponseObject("Ok", "Insert Rating successfully",newRate)
+//            );
+//        }
+
+
+//        boolean check = ratingService.checkRating(newRate);
+        if (ratingService.checkRating(newRate) == false) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("failed", "The Rating has existed"," ")
+                    new ResponseObject("Failed", "The Rating can't be inserted"," ")
             );
         } else {
             ratingService.saveRating(newRate);
