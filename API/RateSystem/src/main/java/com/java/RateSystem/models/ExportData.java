@@ -3,6 +3,7 @@ package com.java.RateSystem.models;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,12 +18,13 @@ public class ExportData {
     private String name;
     private String description;
     private Double avgscore;
-    private Date date;
+    private LocalDate date;
+    private Integer month;
 
     public ExportData() {
     }
 
-    public ExportData(String name, String description, Double avgscore, Date date) {
+    public ExportData(String name, String description, Double avgscore, LocalDate date) {
         this.name = name;
         this.description = description;
         this.avgscore = avgscore;
@@ -61,9 +63,9 @@ public class ExportData {
         this.avgscore = avgscore;
     }
 
-    public Date getDate() { return date; }
+    public int getDate() { return date .getMonth().getValue(); }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

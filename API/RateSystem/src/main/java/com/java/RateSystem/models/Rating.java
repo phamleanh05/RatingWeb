@@ -3,7 +3,7 @@ package com.java.RateSystem.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -23,13 +23,13 @@ public class Rating {
     private String username;
     private Double point;
     private String comment;
-    private Date date;
+    private LocalDate date;
 
 
     public Rating() {
     }
 
-    public Rating(Integer serviceid, String username, Double point, String comment, java.util.Date date) {
+    public Rating(Integer serviceid, String username, Double point, String comment, LocalDate date) {
         this.serviceid = serviceid;
         this.username = username;
         this.point = point;
@@ -85,11 +85,11 @@ public class Rating {
         this.comment = comment;
     }
 
-    public java.util.Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
