@@ -1,6 +1,7 @@
 package com.java.RateSystem.service;
 
 import java.io.IOException;
+import java.util.Collection;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.MethodParameter;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -34,7 +37,7 @@ public class RatingFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, Content-Range");
-        response.setHeader("Access-Control-Expose-Headers", "Content-Range");
+        response.setHeader("Access-Control-Expose-Headers", "x-total-count");
 
         chain.doFilter(req, res);
     }
