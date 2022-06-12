@@ -5,6 +5,7 @@ import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.Servicerate;
 import com.java.RateSystem.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,10 @@ public class RatingController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<ResponseObject>findByUUId(@PathVariable UUID id){
-        Optional<Rating> foundService = ratingService.findByUUId(id);
+    ResponseEntity<ResponseObject>findById(@PathVariable Integer id){
+        Optional<Rating> foundService = ratingService.findById(id);
+        HttpHeaders httpHeaders = new HttpHeaders();
+
         return foundService.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
                         new ResponseObject("ok","Querry Service successfully", foundService)
