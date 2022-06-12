@@ -1,5 +1,6 @@
 package com.java.RateSystem.models;
 
+import net.bytebuddy.asm.Advice;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -36,6 +37,14 @@ public class Rating {
         this.date = date;
     }
 
+    public Rating(Integer id, Integer serviceid, String username, Double point, String comment, LocalDate date) {
+        this.id = id;
+        this.serviceid = serviceid;
+        this.username = username;
+        this.point = point;
+        this.comment = comment;
+        this.date = date;
+    }
     public UUID getUuid() {
         return uuid;
     }

@@ -40,11 +40,11 @@ public class RatingController {
 
     //insert data
     @PostMapping("")
-    ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
+    public ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
         Optional<Rating> foundRate = ratingService.findById(newRate.getId());
         if (foundRate.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject(" ")
+                    new ResponseObject("The Rating can't be inserted")
             );
         } else {
             ratingService.saveRating(newRate);
