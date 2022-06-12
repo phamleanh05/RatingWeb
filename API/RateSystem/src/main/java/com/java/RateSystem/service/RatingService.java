@@ -33,16 +33,8 @@ public class RatingService {
         return ratingRepository.findByRateId(id);
     }
 
-//    public Optional<Rating> findByUUId(@PathVariable UUID uuid){
-//        return ratingRepository.findByUUId(uuid);
-//    }
-
 
     public void deleteById(@PathVariable Integer id) {ratingRepository.deleteByRateId(id);}
-
-//    public boolean isRatingExist(@PathVariable Integer id) {
-//        return ratingRepository.existsById(id);
-//    }
 
     public Rating saveRating(@RequestBody Rating newRating) {
         return ratingRepository.save(newRating);
