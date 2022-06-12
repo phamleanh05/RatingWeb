@@ -3,15 +3,13 @@ package com.java.RateSystem.controller;
 import com.java.RateSystem.models.ExportData;
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.Servicerate;
-import com.java.RateSystem.service.JoinQuery;
+import com.java.RateSystem.service.ExportService;
 import com.java.RateSystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanWriter;
-import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,7 +29,7 @@ public class ServiceController {
     private ProductService productService;
 
     @Autowired
-    private JoinQuery joinQuery;
+    private ExportService exportService;
 
     @GetMapping("")
     List<Servicerate> getAllServiceName() {
@@ -51,35 +49,46 @@ public class ServiceController {
 
     }
 
-
-
     //Export Data
-    @GetMapping("/export")
-    public void exportToCSV(HttpServletResponse response) throws IOException{
+//    @GetMapping("/export")
+//    public void exportToCSV(HttpServletResponse response) throws IOException{
+//        response.setContentType("text/csv");
+//        String fileName = "service.csv";
+//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+//        String currentDateTime = dateFormatter.format(new Date());
+//
+//        String headerKey = "Content-Disposition";
+//        String headerValue = "attachment; filename=services_" + currentDateTime + ".csv";
+//        response.setHeader(headerKey, headerValue);
+//
+//        List<ExportData> listServices = exportService.updateExport();
+//
+//        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+//        String[] csvHeader = { "AverageScore","ServiceNAme", "Description", "Date"};
+//        String[] nameMapping = { "avgscore", "name", "description", "date"};
+//
+//        csvWriter.writeHeader(csvHeader);
+//
+//        for (ExportData exportData : listServices) {
+//            csvWriter.write(exportData, nameMapping);
+//        }
+//
+//        csvWriter.close();
+//    }
 
-        response.setContentType("text/csv");
+    @GetMapping("/export")
+    public void getExportDataCSV(HttpServletResponse servletResponse) throws IOException {
+        servletResponse.setContentType("text/csv");
         String fileName = "service.csv";
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=services_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<ExportData> listServices = joinQuery.updateExport();
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = { "AverageScore","ServiceNAme", "Description", "Date"};
-        String[] nameMapping = { "avgscore", "name", "description", "date"};
-
-        csvWriter.writeHeader(csvHeader);
-
-        for (ExportData exportData : listServices) {
-            csvWriter.write(exportData, nameMapping);
-        }
-
-        csvWriter.close();
+        servletResponse.setHeader(headerKey, headerValue);
+        exportService.writeEmployeesToCsv(servletResponse.getWriter());
     }
+
 
     //insert data
     @PostMapping("/insert")

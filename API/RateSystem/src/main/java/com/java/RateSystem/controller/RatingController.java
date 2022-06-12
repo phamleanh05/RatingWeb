@@ -1,12 +1,8 @@
 package com.java.RateSystem.controller;
 
-import com.java.RateSystem.models.ExportData;
 import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
-import com.java.RateSystem.repository.RatingRepository;
-import com.java.RateSystem.service.JoinQuery;
 import com.java.RateSystem.service.RatingService;
-import org.apache.tomcat.util.http.parser.ContentRange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

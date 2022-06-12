@@ -13,9 +13,10 @@ import java.util.Optional;
 @Repository
 public interface ExportRepository extends JpaRepository<ExportData, Integer> {
     @Query("SELECT new com.java.RateSystem.models.ExportData(s.name, s.description, AVG(r.point), r.date) " +
-            "FROM Servicerate s INNER JOIN Rating r ON s.id = r.serviceid GROUP BY s.name,s.description,r.date, s.avgscore")
+            "FROM Servicerate s INNER JOIN Rating r ON s.id = r.serviceid " +
+            "GROUP BY s.name,s.description,r.date, s.avgscore")
     List<ExportData> fetchExportDataInnerJoin(Sort sort);
 
-    @Query("SELECT e FROM ExportData e WHERE e.date = ?1")
-    Optional<ExportData> findByMonth(Integer date);
+    @Query("SELECT e FROM ExportData e WHERE e.month = e.date")
+    List<ExportData> findByMonth(Integer month);
 }

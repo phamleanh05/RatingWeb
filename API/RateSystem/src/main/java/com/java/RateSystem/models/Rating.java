@@ -26,6 +26,7 @@ public class Rating {
     private LocalDate date;
 
 
+
     public Rating() {
     }
 

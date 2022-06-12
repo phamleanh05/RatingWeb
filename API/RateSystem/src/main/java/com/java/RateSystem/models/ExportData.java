@@ -4,7 +4,6 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Immutable
@@ -19,7 +18,7 @@ public class ExportData {
     private String description;
     private Double avgscore;
     private LocalDate date;
-    private Integer month;
+    private LocalDate month;
 
     public ExportData() {
     }
@@ -29,6 +28,12 @@ public class ExportData {
         this.description = description;
         this.avgscore = avgscore;
         this.date = date;
+    }
+
+    public int getMonth() { return date.getMonth().getValue(); }
+
+    public void setMonth(LocalDate month) {
+        this.month = month;
     }
 
     public Integer getId() {
@@ -63,7 +68,7 @@ public class ExportData {
         this.avgscore = avgscore;
     }
 
-    public int getDate() { return date .getMonth().getValue(); }
+    public int getDate() { return date.getMonth().getValue(); }
 
     public void setDate(LocalDate date) {
         this.date = date;
@@ -75,7 +80,7 @@ public class ExportData {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", avgscore='" + avgscore + '\'' +
-                ", date=" + date +
+                ", month=" + month +
                 '}';
     }
 }
