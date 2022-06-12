@@ -2,6 +2,7 @@ package com.java.RateSystem.controller;
 
 import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
+import com.java.RateSystem.models.Servicerate;
 import com.java.RateSystem.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class RatingController {
     }
 
     //insert data
-    @PostMapping("/insert")
+    @PostMapping("")
     ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
         Optional<Rating> foundRate = ratingService.findByUUId(newRate.getUuid());
         if (foundRate.isPresent()) {
@@ -70,18 +71,18 @@ public class RatingController {
                     return ratingService.saveRating(newRate);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("Ok","Update Service successfully",ratingService.saveRating(newRate))
+                new ResponseObject("Ok","Update Rate successfully",ratingService.saveRating(newRate))
         );
     }
 
 
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteRate (@PathVariable UUID id){
-        boolean exists = ratingService.isRatingExist(id);
-        if(exists)
+    ResponseEntity<ResponseObject> deleteRate (@PathVariable Integer id){
+        Optional<Rating> foundService = ratingService.findById(id);
+        if(foundService.isPresent())
         {
-            ratingService.deleteRating(id);
+            ratingService.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("Ok", "Delete Service successfully","")
             );

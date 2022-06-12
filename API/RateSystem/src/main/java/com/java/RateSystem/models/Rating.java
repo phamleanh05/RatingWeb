@@ -15,9 +15,7 @@ public class Rating {
     @Column(name = "uuid", updatable = false, nullable = false)
 
     private UUID uuid;
-
     private Integer id;
-
     @Column(name = "serviceid")
     private Integer serviceid;
     private String username;

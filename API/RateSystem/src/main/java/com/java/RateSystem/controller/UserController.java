@@ -40,7 +40,7 @@ public class UserController {
                 );
     }
 
-    @PostMapping("/insert")
+    @PostMapping("")
     ResponseEntity<ResponseObject> insertUser(@RequestBody User newUser){
         Optional<User> foundUser = userService.findByEmail(newUser.getEmail().trim());
         return foundUser.isPresent() ?

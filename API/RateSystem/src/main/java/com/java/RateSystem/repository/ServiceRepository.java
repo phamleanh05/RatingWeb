@@ -2,6 +2,7 @@ package com.java.RateSystem.repository;
 
 import com.java.RateSystem.models.Servicerate;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,7 @@ public interface ServiceRepository extends JpaRepository<Servicerate, Integer> {
     @Query("SELECT s FROM Servicerate s WHERE s.uuid = ?1")
     Optional<Servicerate> findByUUId(UUID uuid);
 
+    @Modifying
+    @Query("delete from Servicerate s where s.id= ?1")
+    void deleteByServiceId(Integer id);
 }

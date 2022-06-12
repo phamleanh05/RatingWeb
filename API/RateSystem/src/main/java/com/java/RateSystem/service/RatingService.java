@@ -6,6 +6,7 @@ import com.java.RateSystem.repository.RatingRepository;
 import com.java.RateSystem.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -15,6 +16,7 @@ import java.util.OptionalDouble;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class RatingService {
 
     @Autowired
@@ -28,7 +30,7 @@ public class RatingService {
     }
 
     public Optional<Rating> findById(@PathVariable Integer id) {
-        return ratingRepository.findById(id);
+        return ratingRepository.findByRateId(id);
     }
 
     public Optional<Rating> findByUUId(@PathVariable UUID uuid){
@@ -36,13 +38,11 @@ public class RatingService {
     }
 
 
-    public void deleteRating(@PathVariable UUID id) {
-        ratingRepository.deleteById(id);
-    }
+    public void deleteById(@PathVariable Integer id) {ratingRepository.deleteByRateId(id);}
 
-    public boolean isRatingExist(@PathVariable UUID id) {
-        return ratingRepository.existsById(id);
-    }
+//    public boolean isRatingExist(@PathVariable Integer id) {
+//        return ratingRepository.existsById(id);
+//    }
 
     public Rating saveRating(@RequestBody Rating newRating) {
         return ratingRepository.save(newRating);

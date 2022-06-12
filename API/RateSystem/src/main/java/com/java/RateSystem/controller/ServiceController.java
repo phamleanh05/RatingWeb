@@ -91,7 +91,7 @@ public class ServiceController {
 
 
     //insert data
-    @PostMapping("/insert")
+    @PostMapping("")
     ResponseEntity<ResponseObject> insertProduct(@RequestBody Servicerate newService){
         Optional<Servicerate> foundService = productService.findById(newService.getId());
         return foundService.isPresent() ?
@@ -123,8 +123,8 @@ public class ServiceController {
 
     @DeleteMapping("/{id}")
     ResponseEntity<ResponseObject> deleteProduct (@PathVariable Integer id){
-        boolean exists = productService.existsById(id);
-        if(exists)
+        Optional<Servicerate> foundService = productService.findById(id);
+        if(foundService.isPresent())
         {
             productService.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
