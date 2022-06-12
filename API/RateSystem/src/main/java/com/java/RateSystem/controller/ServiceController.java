@@ -37,8 +37,8 @@ public class ServiceController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> findById(@PathVariable UUID id){
-        Optional<Servicerate> foundProduct = productService.findByUUId(id);
+    ResponseEntity<ResponseObject> findById(@PathVariable Integer id){
+        Optional<Servicerate> foundProduct = productService.findById(id);
         return foundProduct.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
                         new ResponseObject("ok","Querry Service successfully", foundProduct)

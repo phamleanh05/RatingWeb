@@ -32,9 +32,9 @@ public class ProductService {
         return serviceRepository.findByServiceId(id);
     }
 
-    public Optional<Servicerate> findByUUId(@PathVariable UUID uuid) {
-        return serviceRepository.findByUUId(uuid);
-    }
+//    public Optional<Servicerate> findByUUId(@PathVariable UUID uuid) {
+//        return serviceRepository.findByUUId(uuid);
+//    }
 
     public void deleteById(@PathVariable Integer id) {serviceRepository.deleteByServiceId(id);}
 

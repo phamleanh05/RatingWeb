@@ -33,9 +33,9 @@ public class RatingService {
         return ratingRepository.findByRateId(id);
     }
 
-    public Optional<Rating> findByUUId(@PathVariable UUID uuid){
-        return ratingRepository.findByUUId(uuid);
-    }
+//    public Optional<Rating> findByUUId(@PathVariable UUID uuid){
+//        return ratingRepository.findByUUId(uuid);
+//    }
 
 
     public void deleteById(@PathVariable Integer id) {ratingRepository.deleteByRateId(id);}

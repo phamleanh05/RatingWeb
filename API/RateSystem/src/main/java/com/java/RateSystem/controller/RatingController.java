@@ -41,7 +41,7 @@ public class RatingController {
     //insert data
     @PostMapping("")
     ResponseEntity<ResponseObject> insertRating(@RequestBody Rating newRate){
-        Optional<Rating> foundRate = ratingService.findByUUId(newRate.getUuid());
+        Optional<Rating> foundRate = ratingService.findById(newRate.getId());
         if (foundRate.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
                     new ResponseObject("failed", "The Rating has existed"," ")
