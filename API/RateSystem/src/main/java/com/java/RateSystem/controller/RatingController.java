@@ -27,18 +27,15 @@ public class RatingController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<ResponseObject>findById(@PathVariable Integer id){
-        Optional<Rating> foundService = ratingService.findById(id);
-        HttpHeaders httpHeaders = new HttpHeaders();
-
+    ResponseEntity<ResponseObject>findById(@PathVariable UUID id){
+        Optional<Rating> foundService = ratingService.findByUUId(id);
         return foundService.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("ok","Querry Service successfully", foundService)
+                        new ResponseObject(foundService)
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponseObject("false", "Cannot find Service with id =" + id,"")
+                        new ResponseObject("")
                 );
-
     }
 
     //insert data
@@ -47,13 +44,13 @@ public class RatingController {
         Optional<Rating> foundRate = ratingService.findById(newRate.getId());
         if (foundRate.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("failed", "The Rating has existed"," ")
+                    new ResponseObject(" ")
             );
         } else {
             ratingService.saveRating(newRate);
             ratingService.updateavg(newRate);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("Ok", "Insert Rating successfully",newRate)
+                    new ResponseObject(newRate)
             );
         }
     }
@@ -74,7 +71,7 @@ public class RatingController {
                     return ratingService.saveRating(newRate);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("Ok","Update Rate successfully",ratingService.saveRating(newRate))
+                new ResponseObject(ratingService.saveRating(newRate))
         );
     }
 
@@ -87,11 +84,11 @@ public class RatingController {
         {
             ratingService.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("Ok", "Delete Service successfully","")
+                    new ResponseObject("")
             );
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new ResponseObject("Failed", "Cannot find Service to delete ", "")
+                new ResponseObject("")
         );
     }
 }

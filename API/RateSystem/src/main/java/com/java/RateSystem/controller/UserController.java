@@ -2,15 +2,10 @@ package com.java.RateSystem.controller;
 
 import com.java.RateSystem.models.ResponseObject;
 import com.java.RateSystem.models.User;
-import com.java.RateSystem.repository.UserRepository;
 import com.java.RateSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,10 +28,10 @@ public class UserController {
         Optional<User> foundUser = userService.findById(id);
         return foundUser.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("ok","Querry product successfully", foundUser)
+                        new ResponseObject(foundUser)
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponseObject("False","Cannot find", foundUser)
+                        new ResponseObject(foundUser)
                 );
     }
 
@@ -45,10 +40,10 @@ public class UserController {
         Optional<User> foundUser = userService.findByEmail(newUser.getEmail().trim());
         return foundUser.isPresent() ?
                 ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                        new ResponseObject("failed", "Email already taken", "")
+                        new ResponseObject("")
                 ):
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("Ok","Register User Name successfully",userService.save(newUser))
+                        new ResponseObject(userService.save(newUser))
                 );
     }
 
@@ -65,7 +60,7 @@ public class UserController {
                     return userService.save(newUser);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("Ok","Update User successfully",userService.save(newUser))
+                new ResponseObject(userService.save(newUser))
         );
     }
 
@@ -76,11 +71,11 @@ public class UserController {
         {
             userService.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("Ok", "Delete User successfully","")
+                    new ResponseObject("")
             );
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new ResponseObject("Failed", "Cannot find User to delete ", "")
+                new ResponseObject( "")
         );
     }
 }

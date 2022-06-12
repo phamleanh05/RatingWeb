@@ -41,12 +41,11 @@ public class ServiceController {
         Optional<Servicerate> foundProduct = productService.findById(id);
         return foundProduct.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("ok","Querry Service successfully", foundProduct)
+                        new ResponseObject(foundProduct)
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponseObject("false", "Cannot find Service with id =" + id,"")
+                        new ResponseObject("")
                 );
-
     }
 
     //Export Data
@@ -96,10 +95,10 @@ public class ServiceController {
         Optional<Servicerate> foundService = productService.findById(newService.getId());
         return foundService.isPresent() ?
                 ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                        new ResponseObject("failed", "Service Name already taken", "")
+                        new ResponseObject("")
                 ):
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("Ok","Insert Service successfully",productService.save(newService))
+                        new ResponseObject(productService.save(newService))
                 );
     }
 
@@ -117,7 +116,7 @@ public class ServiceController {
                     return productService.save(newService);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("Ok","Update Service successfully",productService.save(newService))
+                new ResponseObject(productService.save(newService))
         );
     }
 
@@ -128,11 +127,11 @@ public class ServiceController {
         {
             productService.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("Ok", "Delete Service successfully","")
+                    new ResponseObject("")
             );
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new ResponseObject("Failed", "Cannot find Service to delete ", "")
+                new ResponseObject( "")
         );
     }
 }
