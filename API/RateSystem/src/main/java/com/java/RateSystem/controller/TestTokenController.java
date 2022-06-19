@@ -18,7 +18,7 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", allowedHeaders = "", exposedHeaders = "*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("")
 public class TestTokenController {
     @Autowired
     AuthenticationManager authenticationManager;
