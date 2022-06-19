@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "*", allowedHeaders = "", exposedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class TestTokenController {
