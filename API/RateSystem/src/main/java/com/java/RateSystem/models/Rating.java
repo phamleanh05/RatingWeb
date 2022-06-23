@@ -23,23 +23,15 @@ public class Rating {
     private Double point;
     private String comment;
     private LocalDate date;
-
-
+    private String serviceName;
 
     public Rating() {
     }
 
-    public Rating(Integer serviceid, String username, Double point, String comment, LocalDate date) {
-        this.serviceid = serviceid;
-        this.username = username;
-        this.point = point;
-        this.comment = comment;
-        this.date = date;
-    }
-
-    public Rating(Integer id, Integer serviceid, String username, Double point, String comment, LocalDate date) {
+    public Rating(Integer id, Integer serviceid, String serviceName, String username, Double point, String comment, LocalDate date) {
         this.id = id;
         this.serviceid = serviceid;
+        this.serviceName = serviceName;
         this.username = username;
         this.point = point;
         this.comment = comment;
@@ -67,6 +59,14 @@ public class Rating {
 
     public void setServiceid(Integer serviceid) {
         this.serviceid = serviceid;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public String getUsername() {
@@ -106,6 +106,7 @@ public class Rating {
         return "Rating{" +
                 "id=" + id +
                 ", serviceid=" + serviceid +
+                ", serviceName=" + serviceName + '\'' +
                 ", userName='" + username + '\'' +
                 ", point=" + point +
                 ", Comment='" + comment + '\'' +
