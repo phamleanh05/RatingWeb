@@ -1,6 +1,5 @@
 package com.java.RateSystem.models;
 
-import net.bytebuddy.asm.Advice;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,23 +19,34 @@ public class Rating {
     @Column(name = "serviceid")
     private Integer serviceid;
     private String username;
-    private Double point;
+    private Double optionAvg;
     private String comment;
     private LocalDate date;
     private String serviceName;
+    private Integer optionid;
 
     public Rating() {
     }
 
-    public Rating(Integer id, Integer serviceid, String serviceName, String username, Double point, String comment, LocalDate date) {
+    public Rating(Integer id, Integer serviceid, Integer optionid, String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
         this.id = id;
         this.serviceid = serviceid;
         this.serviceName = serviceName;
         this.username = username;
-        this.point = point;
+        this.optionAvg = optionAvg;
         this.comment = comment;
         this.date = date;
+        this.optionid = optionid;
     }
+
+    public Integer getOptionid() {
+        return optionid;
+    }
+
+    public void setOptionid(Integer optionid) {
+        this.optionid = optionid;
+    }
+
     public UUID getUuid() {
         return uuid;
     }
@@ -77,12 +87,12 @@ public class Rating {
         this.username = userName;
     }
 
-    public Double getPoint() {
-        return point;
+    public Double getOptionAvg() {
+        return optionAvg;
     }
 
-    public void setPoint(Double point) {
-        this.point = point;
+    public void setOptionAvg(Double point) {
+        this.optionAvg = point;
     }
 
     public String getComment() {
@@ -108,7 +118,7 @@ public class Rating {
                 ", serviceid=" + serviceid +
                 ", serviceName=" + serviceName + '\'' +
                 ", userName='" + username + '\'' +
-                ", point=" + point +
+                ", point=" + optionAvg +
                 ", Comment='" + comment + '\'' +
                 ", Date=" + date +
                 '}';

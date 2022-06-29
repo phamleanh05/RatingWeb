@@ -2,10 +2,8 @@ package com.java.RateSystem.controller;
 
 import com.java.RateSystem.models.Rating;
 import com.java.RateSystem.models.ResponseObject;
-import com.java.RateSystem.models.Servicerate;
 import com.java.RateSystem.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +60,7 @@ public class RatingController {
                 .map(rate -> {
                     rate.setUsername(newRate.getUsername());
                     rate.setServiceid(newRate.getServiceid());
-                    rate.setPoint(newRate.getPoint());
+                    rate.setOptionAvg(newRate.getOptionAvg());
                     rate.setComment(newRate.getComment());
                     rate.setDate(newRate.getDate());
                     return ratingService.saveRating(rate);

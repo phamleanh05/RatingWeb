@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ExportRepository extends JpaRepository<ExportData, Integer> {
-    @Query("SELECT new com.java.RateSystem.models.ExportData(s.name, s.description, AVG(r.point), r.date) " +
+    @Query("SELECT new com.java.RateSystem.models.ExportData(s.name, s.description, AVG(r.optionAvg), r.date) " +
             "FROM Servicerate s INNER JOIN Rating r ON s.id = r.serviceid " +
             "GROUP BY s.name,s.description,r.date, s.avgscore")
     List<ExportData> fetchExportDataInnerJoin(Sort sort);

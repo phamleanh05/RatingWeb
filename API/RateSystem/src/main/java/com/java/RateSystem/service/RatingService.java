@@ -50,7 +50,7 @@ public class RatingService {
 
     public OptionalDouble calculate(Rating newRating){
         List<Rating> findRatingbyServiceID = ratingRepository.findByServiceId(newRating.getServiceid());
-        OptionalDouble avg=  findRatingbyServiceID.stream().mapToDouble(i-> i.getPoint()).average();
+        OptionalDouble avg=  findRatingbyServiceID.stream().mapToDouble(i-> i.getOptionAvg()).average();
         return avg;
     }
 

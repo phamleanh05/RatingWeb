@@ -19,8 +19,8 @@ import static org.mockito.Mockito.when;
 class RateSystemApplicationTests {
 	LocalDate Localdate1 = LocalDate.of(2020, 4, 29);
 	LocalDate Localdate2 = LocalDate.now();
-	Rating rate2 = new Rating(1, 1, "Amazone EC2", "SomeOne", 5.0, "Good Service", Localdate1);
-	Rating rate3 = new Rating(300, 1, "Amazone EC2","SomeOne", 1.0, "Bad Service", Localdate2);
+	Rating rate2 = new Rating(1, 1, 1,"Amazone EC2", "SomeOne", 5.0, "Good Service", Localdate1);
+	Rating rate3 = new Rating(300, 1, 1,"Amazone EC2","SomeOne", 1.0, "Bad Service", Localdate2);
 	@InjectMocks
 	private RatingController ratingController = new RatingController();
 	@Mock
