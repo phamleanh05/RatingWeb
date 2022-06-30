@@ -21,13 +21,13 @@ public class OptionService {
         return optionRepository.findAll();
     }
 
-    public Optional<Options> findById(@PathVariable Integer id) {
+    public Optional<Options> findById(@PathVariable long id) {
         return optionRepository.findById(id);
     }
 
-    public void deleteById(@PathVariable Integer id) {optionRepository.deleteById(id);}
+    public void deleteById(@PathVariable long id) {optionRepository.deleteById(id);}
 
-    public boolean existedId(@PathVariable Integer id){return optionRepository.existsById(id);}
+    public boolean existedId(@PathVariable long id){return optionRepository.existsById(id);}
 
     public Options save(@RequestBody Options newOption) { return optionRepository.save(newOption);}
 }

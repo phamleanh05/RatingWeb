@@ -37,7 +37,7 @@ public class ServiceController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> findById(@PathVariable Integer id){
+    ResponseEntity<ResponseObject> findById(@PathVariable long id){
         Optional<Servicerate> foundProduct = productService.findById(id);
         return foundProduct.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
@@ -104,7 +104,7 @@ public class ServiceController {
 
     //Update data
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateService(@RequestBody Servicerate newService, @PathVariable Integer id){
+    ResponseEntity<ResponseObject> updateService(@RequestBody Servicerate newService, @PathVariable long id){
         Servicerate updateService =  productService.findById(id)
                 .map(service -> {
                     service.setName(newService.getName());
@@ -121,7 +121,7 @@ public class ServiceController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteProduct (@PathVariable Integer id){
+    ResponseEntity<ResponseObject> deleteProduct (@PathVariable long id){
         Optional<Servicerate> foundService = productService.findById(id);
         if(foundService.isPresent())
         {

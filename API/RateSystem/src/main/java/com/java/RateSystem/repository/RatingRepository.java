@@ -11,9 +11,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface RatingRepository extends JpaRepository<Rating, Integer> {
+public interface RatingRepository extends JpaRepository<Rating, Long> {
     @Query("SELECT s FROM Rating s WHERE s.id = ?1")
-    Optional<Rating> findByRateId(Integer id);
+    Optional<Rating> findByRateId(long id);
 
     @Query("SELECT s FROM Rating s WHERE s.uuid = ?1")
     Optional<Rating> findByUUId(UUID uuid);
@@ -23,5 +23,5 @@ public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
     @Modifying
     @Query("delete from Rating r where r.id = ?1")
-    void deleteByRateId(Integer id);
+    void deleteByRateId(long id);
 }

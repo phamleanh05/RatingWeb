@@ -28,7 +28,7 @@ public class ProductService {
         return serviceRepository.findAll();
     }
 
-    public Optional<Servicerate> findById(@PathVariable Integer id) {
+    public Optional<Servicerate> findById(@PathVariable long id) {
         return serviceRepository.findByServiceId(id);
     }
 
@@ -36,7 +36,7 @@ public class ProductService {
         return serviceRepository.findByUUId(uuid);
     }
 
-    public void deleteById(@PathVariable Integer id) {serviceRepository.deleteByServiceId(id);}
+    public void deleteById(@PathVariable long id) {serviceRepository.deleteByServiceId(id);}
 
     public Servicerate save(@RequestBody Servicerate newService) { return serviceRepository.save(newService);}
 }

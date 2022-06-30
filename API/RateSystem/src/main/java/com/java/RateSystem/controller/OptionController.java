@@ -26,7 +26,7 @@ public class OptionController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<ResponseObject> findById(@PathVariable Integer id){
+    ResponseEntity<ResponseObject> findById(@PathVariable long id){
         Optional<Options> foundOption = optionService.findById(id);
         return foundOption.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
@@ -54,9 +54,10 @@ public class OptionController {
 
     //Update data
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateOptions(@RequestBody Options newOpt, @PathVariable Integer id){
+    ResponseEntity<ResponseObject> updateOptions(@RequestBody Options newOpt, @PathVariable long id){
         Options updateOpt =  optionService.findById(id)
                 .map(options -> {
+                    options.setName(newOpt.getName());
                     options.setServiceid(newOpt.getServiceid());
                     options.setServiceName(newOpt.getServiceName());
                     options.setPoint(newOpt.getPoint());
@@ -73,7 +74,7 @@ public class OptionController {
 
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteOptions (@PathVariable Integer id){
+    ResponseEntity<ResponseObject> deleteOptions (@PathVariable long id){
         boolean exists = optionService.existedId(id);
         if(exists)
         {

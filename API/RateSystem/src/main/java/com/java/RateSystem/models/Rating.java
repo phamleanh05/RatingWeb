@@ -15,7 +15,7 @@ public class Rating {
     @Column(name = "uuid", updatable = false, nullable = false)
 
     private UUID uuid;
-    private Integer id;
+    private long id;
     @Column(name = "serviceid")
     private Integer serviceid;
     private String username;
@@ -28,7 +28,7 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(Integer id, Integer serviceid, Integer optionid, String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
+    public Rating(long id, Integer serviceid, Integer optionid, String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
         this.id = id;
         this.serviceid = serviceid;
         this.serviceName = serviceName;
@@ -55,11 +55,11 @@ public class Rating {
         this.uuid = uuid;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 

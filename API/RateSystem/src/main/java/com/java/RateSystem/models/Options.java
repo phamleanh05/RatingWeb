@@ -1,34 +1,29 @@
 package com.java.RateSystem.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "options")
 public class Options {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String serviceName;
     private Integer serviceid;
+    private String name;
     private Integer point;
 
-    public Options() {
-    }
-
-    public Options(Integer id, String serviceName, Integer serviceid, Integer point) {
-        this.id = id;
-        this.serviceName = serviceName;
-        this.serviceid = serviceid;
-        this.point = point;
-    }
-
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -48,21 +43,19 @@ public class Options {
         this.serviceid = serviceid;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Integer getPoint() {
         return point;
     }
 
     public void setPoint(Integer point) {
         this.point = point;
-    }
-
-    @Override
-    public String toString() {
-        return "Options{" +
-                "id=" + id +
-                ", serviceName='" + serviceName + '\'' +
-                ", serviceid=" + serviceid +
-                ", point=" + point +
-                '}';
     }
 }
