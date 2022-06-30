@@ -13,7 +13,7 @@ public class Options {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false, unique = true)
+    @Column(name = "id", unique = true)
     private long id;
     private String serviceName;
     private Integer serviceid;

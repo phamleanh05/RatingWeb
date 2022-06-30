@@ -15,7 +15,7 @@ public class Servicerate {
     @Column(name = "uuid", updatable = false, nullable = false)
 
     private UUID uuid;
-    @Column(name = "id", updatable = false, nullable = false, unique = true)
+    @Column(name = "id", unique = true)
     private long id;
     private String name;
     private String image;
