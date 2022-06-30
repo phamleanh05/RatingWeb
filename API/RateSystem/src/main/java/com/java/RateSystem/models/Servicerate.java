@@ -12,15 +12,12 @@ import java.util.UUID;
 @Entity
 @Table(name = "Services")
 public class Servicerate {
-
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "uuid", updatable = false, nullable = false)
-
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private long id;
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
     private String name;
     private String image;
     private String description;

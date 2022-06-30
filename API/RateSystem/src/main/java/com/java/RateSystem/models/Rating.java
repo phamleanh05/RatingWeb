@@ -14,13 +14,11 @@ import java.util.UUID;
 @Table(name = "rating")
 public class Rating {
     @Id
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
-    @GeneratedValue(generator = "UUIDGenerator")
-    @Column(name = "uuid", updatable = false, nullable = false)
-
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private long id;
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
     @Column(name = "serviceid")
     private Integer serviceid;
     private String username;
