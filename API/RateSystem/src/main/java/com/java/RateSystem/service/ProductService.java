@@ -38,9 +38,5 @@ public class ProductService {
 
     public void deleteById(@PathVariable Integer id) {serviceRepository.deleteByServiceId(id);}
 
-//    public boolean existsById(@PathVariable Integer id) {
-//        return serviceRepository.existsById(id);
-//    }
-
     public Servicerate save(@RequestBody Servicerate newService) { return serviceRepository.save(newService);}
 }
