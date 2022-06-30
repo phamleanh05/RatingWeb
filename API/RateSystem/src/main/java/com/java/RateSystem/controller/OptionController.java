@@ -43,7 +43,7 @@ public class OptionController {
         Optional<Options> foundOption = optionService.findById(newOption.getId());
         if (foundOption.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("The Rating can't be inserted")
+                    new ResponseObject("")
             );
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(

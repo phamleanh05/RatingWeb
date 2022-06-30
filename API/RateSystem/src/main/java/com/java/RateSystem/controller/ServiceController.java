@@ -93,13 +93,15 @@ public class ServiceController {
     @PostMapping("")
     ResponseEntity<ResponseObject> insertProduct(@RequestBody Servicerate newService){
         Optional<Servicerate> foundService = productService.findById(newService.getId());
-        return foundService.isPresent() ?
-                ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                        new ResponseObject("")
-                ):
-                ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject(productService.save(newService))
-                );
+        if (foundService.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
+                    new ResponseObject("")
+            );
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject(productService.save(newService))
+            );
+        }
     }
 
     //Update data

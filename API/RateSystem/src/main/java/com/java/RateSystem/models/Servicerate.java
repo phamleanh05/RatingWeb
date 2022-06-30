@@ -1,10 +1,14 @@
 package com.java.RateSystem.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Services")
 public class Servicerate {
@@ -21,17 +25,6 @@ public class Servicerate {
     private String image;
     private String description;
     private Double avgscore;
-
-    public Servicerate() {
-    }
-
-    public Servicerate(UUID uuid, String name, String image, String description, Double avgscore) {
-        this.uuid = uuid;
-        this.name = name;
-        this.image = image;
-        this.description = description;
-        this.avgscore = avgscore;
-    }
 
     public UUID getUuid() {
         return uuid;

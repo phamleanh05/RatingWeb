@@ -1,11 +1,15 @@
 package com.java.RateSystem.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "rating")
 public class Rating {
@@ -25,9 +29,6 @@ public class Rating {
     private LocalDate date;
     private String serviceName;
     private Integer optionid;
-
-    public Rating() {
-    }
 
     public Rating(long id, Integer serviceid, Integer optionid, String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
         this.id = id;
