@@ -16,7 +16,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     Optional<Rating> findByRateId(long id);
 
     @Query("SELECT s FROM Rating s WHERE s.uuid = ?1")
-    Optional<Rating> findByUUId(UUID uuid);
+    Optional<Rating> findByUUId(String uuid);
 
     @Query("SELECT s FROM Rating s WHERE s.serviceid = ?1")
     List<Rating> findByServiceId(Integer serviceid);
