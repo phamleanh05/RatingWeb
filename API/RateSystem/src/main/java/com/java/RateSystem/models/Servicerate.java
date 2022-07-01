@@ -16,7 +16,7 @@ public class Servicerate {
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "uuid", updatable = false, nullable = false)
-    private UUID uuid;
+    private String uuid;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +27,11 @@ public class Servicerate {
     private String description;
     private Double avgscore;
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
