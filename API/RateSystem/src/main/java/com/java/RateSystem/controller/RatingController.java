@@ -25,7 +25,7 @@ public class RatingController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<ResponseObject>findById(@PathVariable String id){
+    ResponseEntity<ResponseObject>findById(@PathVariable UUID id){
         Optional<Rating> foundService = ratingService.findByUUId(id);
         return foundService.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(

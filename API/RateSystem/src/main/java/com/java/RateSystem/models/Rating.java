@@ -13,11 +13,12 @@ import java.util.UUID;
 @Entity
 @Table(name = "rating")
 public class Rating {
+    @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "uuid", updatable = false, nullable = false)
-    private String uuid;
-    @Id
+    private UUID uuid;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private long id;
@@ -49,11 +50,11 @@ public class Rating {
         this.optionid = optionid;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 

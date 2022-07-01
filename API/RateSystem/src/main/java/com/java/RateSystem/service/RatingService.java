@@ -33,7 +33,7 @@ public class RatingService {
         return ratingRepository.findByRateId(id);
     }
 
-    public Optional<Rating> findByUUId(@PathVariable String uuid){
+    public Optional<Rating> findByUUId(@PathVariable UUID uuid){
         return ratingRepository.findByUUId(uuid);
     }
 

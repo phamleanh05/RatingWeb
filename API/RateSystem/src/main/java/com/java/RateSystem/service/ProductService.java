@@ -32,7 +32,7 @@ public class ProductService {
         return serviceRepository.findByServiceId(id);
     }
 
-    public Optional<Servicerate> findByUUId(@PathVariable String uuid) {
+    public Optional<Servicerate> findByUUId(@PathVariable UUID uuid) {
         return serviceRepository.findByUUId(uuid);
     }
 

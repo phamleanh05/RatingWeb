@@ -15,7 +15,7 @@ public interface ServiceRepository extends JpaRepository<Servicerate, Long> {
     Optional<Servicerate> findByServiceId(long id);
 
     @Query("SELECT s FROM Servicerate s WHERE s.uuid = ?1")
-    Optional<Servicerate> findByUUId(String uuid);
+    Optional<Servicerate> findByUUId(UUID uuid);
 
     @Modifying
     @Query("delete from Servicerate s where s.id= ?1")

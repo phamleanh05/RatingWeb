@@ -12,13 +12,12 @@ import java.util.UUID;
 @Entity
 @Table(name = "Services")
 public class Servicerate {
-
+    @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "uuid", updatable = false, nullable = false)
-    private String uuid;
+    private UUID uuid;
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private long id;
@@ -27,11 +26,11 @@ public class Servicerate {
     private String description;
     private Double avgscore;
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
