@@ -10,14 +10,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ServiceRepository extends JpaRepository<Servicerate, Long> {
+public interface ServiceRepository extends JpaRepository<Servicerate, Integer> {
     @Query("SELECT s FROM Servicerate s WHERE s.id = ?1")
-    Optional<Servicerate> findByServiceId(long id);
+    Optional<Servicerate> findByServiceId(Integer id);
 
     @Query("SELECT s FROM Servicerate s WHERE s.uuid = ?1")
     Optional<Servicerate> findByUUId(UUID uuid);
 
     @Modifying
     @Query("delete from Servicerate s where s.id= ?1")
-    void deleteByServiceId(long id);
+    void deleteByServiceId(Integer id);
 }

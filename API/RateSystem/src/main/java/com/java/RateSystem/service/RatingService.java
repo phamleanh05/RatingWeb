@@ -29,7 +29,7 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public Optional<Rating> findById(@PathVariable long id) {
+    public Optional<Rating> findById(@PathVariable Integer id) {
         return ratingRepository.findByRateId(id);
     }
 
@@ -38,7 +38,7 @@ public class RatingService {
     }
 
 
-    public void deleteById(@PathVariable long id) {ratingRepository.deleteByRateId(id);}
+    public void deleteById(@PathVariable Integer id) {ratingRepository.deleteByRateId(id);}
 
 //    public boolean isRatingExist(@PathVariable Integer id) {
 //        return ratingRepository.existsById(id);

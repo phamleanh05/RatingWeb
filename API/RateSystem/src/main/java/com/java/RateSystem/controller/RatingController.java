@@ -55,7 +55,7 @@ public class RatingController {
 
     //Update data
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateRate(@RequestBody Rating newRate, @PathVariable long id){
+    ResponseEntity<ResponseObject> updateRate(@RequestBody Rating newRate, @PathVariable Integer id){
         Rating updateRate =  ratingService.findById(id)
                 .map(rate -> {
                     rate.setUsername(newRate.getUsername());
@@ -76,7 +76,7 @@ public class RatingController {
 
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteRate (@PathVariable long id){
+    ResponseEntity<ResponseObject> deleteRate (@PathVariable Integer id){
         Optional<Rating> foundService = ratingService.findById(id);
         if(foundService.isPresent())
         {

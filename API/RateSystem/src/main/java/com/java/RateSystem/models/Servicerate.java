@@ -1,7 +1,9 @@
 package com.java.RateSystem.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "Services")
 public class Servicerate {
@@ -20,59 +24,11 @@ public class Servicerate {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-    private long id;
+    private Integer id;
     private String name;
     private String image;
     private String description;
     private Double avgscore;
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String serviceimg) {
-        this.image = serviceimg;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String servicedesc) {
-        this.description = servicedesc;
-    }
-
-    public Double getAvgscore() {
-        return avgscore;
-    }
-
-    public void setAvgscore(Double avgscore) {
-        this.avgscore = avgscore;
-    }
 
     @Override
     public String toString() {
