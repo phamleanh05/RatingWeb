@@ -18,7 +18,7 @@ public class Options {
     private String serviceName;
     private Integer serviceid;
     private String name;
-    private Integer point;
+    private Double point;
 
     public long getId() {
         return id;
@@ -52,11 +52,22 @@ public class Options {
         this.name = name;
     }
 
-    public Integer getPoint() {
+    public Double getPoint() {
         return point;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(Double point) {
         this.point = point;
+    }
+
+    @Override
+    public String toString() {
+        return "Options{" +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
+                ", serviceid=" + serviceid +
+                ", name='" + name + '\'' +
+                ", point=" + point +
+                '}';
     }
 }

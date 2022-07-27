@@ -27,6 +27,7 @@ public class Servicerate {
     private Integer id;
     private String name;
     private String image;
+    private String secondimage;
     private String description;
     private Double avgscore;
 
@@ -35,6 +36,7 @@ public class Servicerate {
         return "Servicerate{" +
                 "name='" + name + '\'' +
                 ", serviceimg='" + image + '\'' +
+                ", secondimg='" + secondimage + '\'' +
                 ", servicedesc='" + description + '\'' +
                 ", avgscore=" + avgscore +
                 '}';

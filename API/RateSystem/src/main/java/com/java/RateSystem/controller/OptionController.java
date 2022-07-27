@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
-@RequestMapping(path = "api/v1/option")
+@RequestMapping(path = "api/v1/options")
 public class OptionController {
     @Autowired
     private OptionService optionService;
@@ -43,11 +43,13 @@ public class OptionController {
         Optional<Options> foundOption = optionService.findById(newOption.getId());
         if (foundOption.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("")
+                    new ResponseObject("Failed to update")
             );
         } else {
+            optionService.saveOpt(newOption);
+            optionService.updateavg(newOption);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject(optionService.save(newOption))
+                    new ResponseObject(newOption)
             );
         }
     }
@@ -61,13 +63,13 @@ public class OptionController {
                     options.setServiceid(newOpt.getServiceid());
                     options.setServiceName(newOpt.getServiceName());
                     options.setPoint(newOpt.getPoint());
-                    return optionService.save(options);
+                    return optionService.saveOpt(options);
                 }).orElseGet(()->{
                     newOpt.setId(id);
-                    return optionService.save(newOpt);
+                    return optionService.saveOpt(newOpt);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject(optionService.save(newOpt))
+                new ResponseObject(optionService.saveOpt(newOpt))
         );
     }
 
