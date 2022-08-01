@@ -34,8 +34,11 @@ public class Rating {
     private LocalDate date;
     private String serviceName;
     private Integer optionid;
+    private Integer optionSecondId;
+    private Integer optionThirdId;
 
-    public Rating(Integer id, Integer serviceid, Integer optionid, String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
+    public Rating(Integer id, Integer serviceid, Integer optionid, Integer optionSecondId, Integer optionThirdId,
+                  String serviceName, String username, Double optionAvg, String comment, LocalDate date) {
         this.id = id;
         this.serviceid = serviceid;
         this.serviceName = serviceName;
@@ -44,18 +47,24 @@ public class Rating {
         this.comment = comment;
         this.date = date;
         this.optionid = optionid;
+        this.optionSecondId = optionSecondId;
+        this.optionThirdId = optionThirdId;
     }
 
     @Override
     public String toString() {
         return "Rating{" +
-                "id=" + id +
+                "uuid=" + uuid +
+                ", id=" + id +
                 ", serviceid=" + serviceid +
-                ", serviceName=" + serviceName + '\'' +
-                ", userName='" + username + '\'' +
-                ", point=" + optionAvg +
-                ", Comment='" + comment + '\'' +
-                ", Date=" + date +
+                ", username='" + username + '\'' +
+                ", optionAvg=" + optionAvg +
+                ", comment='" + comment + '\'' +
+                ", date=" + date +
+                ", serviceName='" + serviceName + '\'' +
+                ", optionid=" + optionid +
+                ", optionSecondId=" + optionSecondId +
+                ", optionThirdId=" + optionThirdId +
                 '}';
     }
 }

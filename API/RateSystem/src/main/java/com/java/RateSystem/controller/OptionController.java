@@ -50,23 +50,23 @@ public class OptionController {
     }
 
     //Update data
-    @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateOptions(@RequestBody Options newOpt, @PathVariable long id){
-        Options updateOpt =  optionService.findById(id)
-                .map(options -> {
-                    options.setName(newOpt.getName());
-                    options.setServiceid(newOpt.getServiceid());
-                    options.setServiceName(newOpt.getServiceName());
-                    options.setPoint(newOpt.getPoint());
-                    return optionService.saveOpt(options);
-                }).orElseGet(()->{
-                    newOpt.setId(id);
-                    return optionService.saveOpt(newOpt);
-                });
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject(optionService.saveOpt(newOpt))
-        );
-    }
+//    @PutMapping("/{id}")
+//    ResponseEntity<ResponseObject> updateOptions(@RequestBody Options newOpt, @PathVariable long id){
+//        Options updateOpt =  optionService.findById(id)
+//                .map(options -> {
+//                    options.setName(newOpt.getName());
+//                    options.setServiceid(newOpt.getServiceid());
+//                    options.setServiceName(newOpt.getServiceName());
+//                    options.setPoint(newOpt.getPoint());
+//                    return optionService.saveOpt(options);
+//                }).orElseGet(()->{
+//                    newOpt.setId(id);
+//                    return optionService.saveOpt(newOpt);
+//                });
+//        return ResponseEntity.status(HttpStatus.OK).body(
+//                new ResponseObject(optionService.saveOpt(newOpt))
+//        );
+//    }
 
 
 
