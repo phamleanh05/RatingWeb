@@ -32,6 +32,9 @@ public class OptionService {
     public Optional<Options> findById(@PathVariable long id) {
         return optionRepository.findById(id);
     }
+    public List<Options> findByServiceId(@PathVariable Integer id) {
+        return optionRepository.findByServiceId(id);
+    }
 
     public void deleteById(@PathVariable long id) {optionRepository.deleteById(id);}
 

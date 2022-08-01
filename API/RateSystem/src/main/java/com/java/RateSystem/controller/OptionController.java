@@ -26,15 +26,10 @@ public class OptionController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<ResponseObject> findById(@PathVariable long id){
-        Optional<Options> foundOption = optionService.findById(id);
-        return foundOption.isPresent() ?
-                ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject(foundOption)
-                ):
-                ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponseObject("")
-                );
+    ResponseEntity<ResponseObject> findByServiceId(@PathVariable Integer id){
+        List<Options> foundOption = optionService.findByServiceId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(foundOption));
     }
 
     //insert data

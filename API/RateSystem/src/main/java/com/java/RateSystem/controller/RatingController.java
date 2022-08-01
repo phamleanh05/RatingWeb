@@ -45,10 +45,10 @@ public class RatingController {
                     new ResponseObject("The Rating can't be inserted")
             );
         } else {
-            ratingService.saveRating(newRate);
-            ratingService.updateavg(newRate);
+//            ratingService.saveRating(newRate);
+//            ratingService.updateavg(newRate);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject(newRate)
+                    new ResponseObject(ratingService.saveRating(newRate))
             );
         }
     }
