@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: phamleanhratingweb 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phamleanhratingweb
+  template:
+    metadata:
+      labels:
+        app: phamleanhratingweb 
+    spec:
+      containers:
+        - name: phamleanhratingweb 
+          image: azdevopacr.azurecr.io/phamleanhratingweb
+          ports:
+          - containerPort: 8080
